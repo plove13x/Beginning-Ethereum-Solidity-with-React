@@ -242,22 +242,24 @@ class App extends Component {
 
   renderProducts(){
     return this.state.products.map((product, index) => {
-      var price = this.web3.utils.fromWei(product.price,'ether');
-      return(
-        <ListGroup>
-          {/*header not working*/}
-          <ListGroupItem header="heading 1"><h4 className="list-group-item-heading">{product.name}</h4>Description: {product.description}</ListGroupItem>
-          <ListGroupItem>Price (ETH): {price}</ListGroupItem>
-          <ListGroupItem>Sold by {product.seller}</ListGroupItem>
-          <ListGroupItem>Bought by {product.buyer}</ListGroupItem>
-          <ListGroupItem>
-            {/*bsStyle="primary" not working and not necessary so removed*/}
-            <Button onClick={this.handleBuy(product.id,price,product.seller)}>
-              Buy
-            </Button>
-          </ListGroupItem>
-        </ListGroup>
-      );
+      if (product.buyer == 0x0) {
+        var price = this.web3.utils.fromWei(product.price,'ether');
+        return(
+          <ListGroup>
+            {/*header not working*/}
+            <ListGroupItem header="heading 1"><h4 className="list-group-item-heading">{product.name}</h4>Description: {product.description}</ListGroupItem>
+            <ListGroupItem>Price (ETH): {price}</ListGroupItem>
+            <ListGroupItem>Sold by {product.seller}</ListGroupItem>
+            <ListGroupItem>Bought by {product.buyer}</ListGroupItem>
+            <ListGroupItem>
+              {/*bsStyle="primary" not working and not necessary so removed*/}
+              <Button onClick={this.handleBuy(product.id,price,product.seller)}>
+                Buy
+              </Button>
+            </ListGroupItem>
+          </ListGroup>
+        );
+      }
     });
   }
 
