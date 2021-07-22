@@ -5,8 +5,6 @@ const { abi,bytecode } = require('./compile');
 const provider = new HDWalletProvider(
 	'squeeze bachelor cruise inform quit fame seven ribbon hospital drum tide stomach', 
 	'https://rinkeby.infura.io/v3/1c7e1aa58e4740578bf6ed015576d742'
-	// 0,
-	// 10
 );
 
 const web3 = new Web3(provider);
@@ -18,10 +16,7 @@ const deploy = async () => {
 	accounts = await web3.eth.getAccounts();
 	console.log(accounts);
 	console.log('attempting to deploy from account', accounts[0]);
-		// 0X!!!!!!!
-		// .deploy({data: '0x' + bytecode, arguments:['Hello World']})
 	const result = await new web3.eth.Contract(abi)
-		// .deploy({data: bytecode, arguments:['Hello World']})
 		.deploy({data: bytecode})
 		.send({gas: '1000000', from: accounts[0] });
 

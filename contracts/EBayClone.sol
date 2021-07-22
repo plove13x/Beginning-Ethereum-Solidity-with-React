@@ -3,12 +3,6 @@ pragma solidity ^0.8.4;
 
 contract EBayClone {
      
-    // address payable public owner;
-  
-    // constructor() payable {
-    //     owner = payable(msg.sender);
-    // } 
-    
 	struct Product {
 		uint id;
 		address payable seller;

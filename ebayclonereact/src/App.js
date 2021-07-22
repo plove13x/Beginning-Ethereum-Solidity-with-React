@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
-// import logo from './logo.svg';
 import './App.css';
 import Web3 from 'web3';
-// import detectEthereumProvider from '@metamask/detect-provider';
 import { Button, Container, FormLabel, FormControl, FormGroup, ListGroup, ListGroupItem, Modal, Nav, Navbar } from 'react-bootstrap';
-// import Navbar from 'react-bootstrap/Navbar';
-
+// import detectEthereumProvider from '@metamask/detect-provider';
 
 class App extends Component {
   web3;
@@ -14,7 +10,6 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    // console.log(props); console.log(this.props);
 
     // How to use/expose this.web3 while using the more suitable commented block below since it contains
     // AWAIT (thus async) below?
@@ -24,7 +19,6 @@ class App extends Component {
     }
     getThisShitRollin();
     console.log(window.ethereum.request({ method: 'eth_requestAccounts' }));
-    console.log(window.ethereum._metamask.isUnlocked());
     console.log(this.web3.eth.accounts);
     console.log(this.web3.eth.personal.listWallets);
     // const detectProvider = async () => {
@@ -50,9 +44,7 @@ class App extends Component {
       // "accounts" will always be an array, but it can be empty.
     });
 
-    console.log(this.web3.eth.getAccounts());
-    console.log(this.web3.eth.getBalance('0x2b94B3cFCD117A10047660dad60C7322998CD12B'));
-    // 0x56cAa3b8D868ABB22273E0c783D0CD81E6d5bAe3
+
     console.log(this.web3.eth.accounts.wallet);
 
     const address = '0xb788dF1b05C1f7EDbBb4712fb318b6c08EE6DA2E';
@@ -77,18 +69,6 @@ class App extends Component {
         payable: undefined,
         signature: '0x3ffd81fb'
       },
-      // {
-      //   inputs: [],
-      //   name: 'owner',
-      //   // Don't see this in Greg code because you added "Address Payable Public Owner" in solidity contract. 
-      //   // Will probably at least need address field.
-      //   outputs: [ [Object] ],
-      //   stateMutability: 'view',
-      //   type: 'function',
-      //   constant: true,
-      //   payable: undefined,
-      //   signature: '0x8da5cb5b'
-      // },
       {
         inputs: [{"name":"","type":"uint256"}],
         name: 'products',
@@ -100,7 +80,6 @@ class App extends Component {
         signature: '0x7acc0b20'
       },
       {
-        // inputs: [ [Object], [Object], [Object] ],
         inputs: [{"name":"_name","type":"string"},{"name":"_description","type":"string"},{"name":"_price","type":"uint256"}],
         name: 'sellProduct',
         outputs: [],
@@ -112,7 +91,6 @@ class App extends Component {
       }
     ];
     this.eBayClone = new this.web3.eth.Contract(abi, address);
-    // console.log(this.eBayClone);
 
     // there is a claim that es6 introduced arrow functions which will avoid the deprecation warning this is triggering
     this.handleClose = this.handleClose.bind(this);
@@ -134,7 +112,6 @@ class App extends Component {
   }
 
   componentDidMount(){
-    // console.log(this.web3);
     this.refreshContractDetails();
   }
 
@@ -212,7 +189,6 @@ class App extends Component {
 
     // shouldn't something like this be getting called more globally? Yes have it doing so now. Can probably remove.
     window.ethereum.on('accountsChanged', (accounts) => {
-      console.log('a');
       // Handle the new accounts, or lack thereof.
       // "accounts" will always be an array, but it can be empty.
     });
